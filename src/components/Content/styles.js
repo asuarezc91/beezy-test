@@ -6,23 +6,32 @@ export const MainContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 export const Box = styled.div`
   background: red;
-  height: 120px;
-  width: 120px;
-  margin: 10px; 
+  height: 200px;
+  width: 600px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column; 
 `;
 
 export const TittleBox = styled.div`
+ 
   background: blue;
-  height: 20px;
-  width: 120px;
+  height: 50px;
+  width: 600px;
 `;
 
 export const ContentBox = styled.div`
   background: green;
-  height: 100px;
-  width: 120px;
+  height: 150px;
+  width: 600px;
+`;
+
+export const TextBox = styled.p`
+  margin: 10px;
+  color: white;
 `;

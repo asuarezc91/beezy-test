@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Box, TittleBox, ContentBox, MainContainer } from "./styles";
+import { Box, TittleBox, ContentBox, MainContainer, TextBox } from "./styles";
 
 export const Content = () => {
   const [list, setCount] = useState([]);
- 
+
   // useEffect(() => {
   //   fetch("https://swapi.co/api/people")
   //     .then(response => {
@@ -30,8 +30,14 @@ export const Content = () => {
     <MainContainer>
       {list.map(item => (
         <Box>
-          <TittleBox>{item.name}</TittleBox>
-          <ContentBox></ContentBox>
+          <TittleBox>
+            <TextBox>{item.name}</TextBox>
+          </TittleBox>
+          <ContentBox>
+            <TextBox>Birth year: {item.birth_year}</TextBox>
+            <TextBox>Gender: {item.gender}</TextBox>
+            <TextBox>Height:{item.height}</TextBox>
+          </ContentBox>
         </Box>
       ))}
     </MainContainer>
