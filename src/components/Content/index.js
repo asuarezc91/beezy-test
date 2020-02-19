@@ -1,38 +1,42 @@
-import React, { useEffect } from "react";
-import { Test } from "./styles";
+import React, { useState, useEffect } from "react";
+import { Box, TittleBox, ContentBox, MainContainer } from "./styles";
 
 export const Content = () => {
+  const [list, setCount] = useState([]);
+ 
+  // useEffect(() => {
+  //   fetch("https://swapi.co/api/people")
+  //     .then(response => {
+  //       return response.json();
+  //     })
+  //     .then(response => {
+  //       console.log(response.results);
+  //       // setCount(response.results);
+  //     });
+  // }, [list]);
 
-
+  const fetchList = async () => {
+    const apiCall = await fetch("https://swapi.co/api/people");
+    const user = await apiCall.json();
+    console.log(user.results);
+    setCount(user.results);
+  };
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/ditto/")
-      .then(response => {
-        return response.json();
-      })
-      .then(response => {
-        // console.log(response);
-        esklasask(response); 
-      });
+    fetchList();
+  }, []);
 
-     
-  });
-
-  function esklasask(response){
-
-    console.log(response); 
-  };
-  
-  
-
-
-
-
- 
-  return <Test></Test>;
+  return (
+    <MainContainer>
+      {list.map(item => (
+        <Box>
+          <TittleBox>{item.name}</TittleBox>
+          <ContentBox></ContentBox>
+        </Box>
+      ))}
+    </MainContainer>
+  );
 };
-
-
 
 // import { List, Item } from './styles'
 
