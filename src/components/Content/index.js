@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+// import { Router } from "@reach/router";
+import { Detail } from "../Detail";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Box, TittleBox, ContentBox, MainContainer, TextBox } from "./styles";
 
 export const Content = () => {
@@ -25,6 +28,7 @@ export const Content = () => {
   useEffect(() => {
     fetchList();
   }, []);
+ 
 
   return (
     <MainContainer>
@@ -37,12 +41,22 @@ export const Content = () => {
             <TextBox>Birth year: {item.birth_year}</TextBox>
             <TextBox>Gender: {item.gender}</TextBox>
             <TextBox>Height:{item.height}</TextBox>
+            <Link
+              to={{
+                pathname: "/detail",
+                test: { item }
+              }}
+            > detalles</Link>
           </ContentBox>
         </Box>
       ))}
     </MainContainer>
   );
 };
+
+// <Link to="/detail" tittle={23} onClick={test} className="whatev">
+// Details
+// </Link>
 
 // import { List, Item } from './styles'
 
@@ -55,3 +69,5 @@ export const Content = () => {
 //     </List>
 //   )
 // }
+
+// to = {{path: "/detail", aboutProps: {name: {item}}}}
