@@ -6,29 +6,25 @@ import { Box, TittleBox, ContentBox, MainContainer, TextBox } from "./styles";
 
 export const Content = () => {
   const [list, setCount] = useState([]);
-
-  // useEffect(() => {
-  //   fetch("https://swapi.co/api/people")
-  //     .then(response => {
-  //       return response.json();
-  //     })
-  //     .then(response => {
-  //       console.log(response.results);
-  //       // setCount(response.results);
-  //     });
-  // }, [list]);
-
   const fetchList = async () => {
     const apiCall = await fetch("https://swapi.co/api/people");
     const user = await apiCall.json();
     console.log(user.results);
+    let listado = user.results;
+
+    for (const value of listado) {
+      const position = listado.indexOf(value) + 1;
+      value["position"] = position;
+    }
+
+    console.log(listado);
+
     setCount(user.results);
   };
 
   useEffect(() => {
     fetchList();
   }, []);
- 
 
   return (
     <MainContainer>
@@ -46,7 +42,10 @@ export const Content = () => {
                 pathname: "/detail",
                 test: { item }
               }}
-            > detalles</Link>
+            >
+              {" "}
+              detalles
+            </Link>
           </ContentBox>
         </Box>
       ))}
